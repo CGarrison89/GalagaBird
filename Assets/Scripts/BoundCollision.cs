@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FloorCollision : MonoBehaviour {
+public class BoundCollision : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D collider) {
 		if (collider.gameObject.CompareTag("Player")) {

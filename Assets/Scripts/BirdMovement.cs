@@ -18,8 +18,8 @@ public class BirdMovement : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			velocityForce += UpwardsForce * Time.deltaTime;
 
-			if (velocityForce.y > 4) {
-				velocityForce.y = 4;
+			if (velocityForce.y > 3) {
+				velocityForce.y = 3;
 			}
 
 			transform.position += velocityForce * Time.deltaTime;
