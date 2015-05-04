@@ -7,10 +7,7 @@ public class FireballScript : MonoBehaviour
     void Update()
     {
         transform.position += new Vector3(-.1f, 0, 0);
-    }
-
-    public void OnBecameInvisible()
-    {
-        Destroy(gameObject);
+        if (!GetComponent<Renderer>().IsVisibleFrom(Camera.main))
+            Destroy(gameObject);
     }
 }

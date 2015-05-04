@@ -12,7 +12,7 @@ public class DrTScript : MonoBehaviour
     public void Update()
     {
         transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time), transform.position.z);
-        if (GetComponent<Renderer>().isVisible)
+        if (GetComponent<Renderer>().IsVisibleFrom(Camera.main))
         {
             if (!shouldFire)
             {
@@ -24,7 +24,7 @@ public class DrTScript : MonoBehaviour
         else if (shouldFire)
         {
             Debug.Log("DrT stopped firing");
-            Destroy(gameObject);
+            CancelInvoke("TryFire");
         }
     }
 
