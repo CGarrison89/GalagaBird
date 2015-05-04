@@ -17,6 +17,7 @@ public class BirdMovement : MonoBehaviour {
 		//Left button is clicked
 		if (Input.GetMouseButtonDown (0)) {
 			if (GameState.Dead == true && Time.timeScale == 0) {
+				GameState.Dead = false;
 				Time.timeScale = 1;
 			}
 

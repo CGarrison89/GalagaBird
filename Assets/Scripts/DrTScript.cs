@@ -11,7 +11,7 @@ public class DrTScript : MonoBehaviour
 
     public void Update()
     {
-        transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time), transform.position.z);
+        transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time), -2);
         if (GetComponent<Renderer>().isVisible)
         {
             if (!shouldFire)
