@@ -16,6 +16,10 @@ public class BirdMovement : MonoBehaviour {
 	void Update() {
 		//Left button is clicked
 		if (Input.GetMouseButtonDown (0)) {
+			if (GameState.Dead == true && Time.timeScale == 0) {
+				Time.timeScale = 1;
+			}
+
 			velocityForce += UpwardsForce * Time.deltaTime;
 
 			if (velocityForce.y > 3) {
