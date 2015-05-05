@@ -25,6 +25,7 @@ public class DrTScript : MonoBehaviour
         {
             Debug.Log("DrT stopped firing");
             CancelInvoke("TryFire");
+			shouldFire = false;
         }
     }
 
@@ -41,11 +42,5 @@ public class DrTScript : MonoBehaviour
     public void DoneFiring()
     {
         GetComponent<SpriteRenderer>().sprite = IdleSprite;
-    }
-
-    public void OnBecameInvisible()
-    {
-        Debug.Log("DrT stopped firing");
-        Destroy(gameObject);
     }
 }
