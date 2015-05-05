@@ -36,6 +36,7 @@ public class DrTScript : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = AttackSprite;
             Instantiate(FireballPrefab, transform.position, Quaternion.identity);
             Invoke("DoneFiring", 0.1f);
+			GetComponent<AudioSource>().Play();
         }
     }
 
