@@ -19,7 +19,6 @@ public class ScoreCollision : MonoBehaviour
         float distance =  transform.position.x - Player.transform.position.x;
         if (distance < 0 && !hasScored)
         {
-            Debug.Log("Score increase");
             ScoreKeeper.AddScore(1);
             hasScored = true;
 

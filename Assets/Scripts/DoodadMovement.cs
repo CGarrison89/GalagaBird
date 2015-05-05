@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DoodadMovement : MonoBehaviour 
 {
@@ -7,6 +8,7 @@ public class DoodadMovement : MonoBehaviour
     public float speed;
     public StatType Type;
     public int Value;
+    public Queue<GameObject> Cache;
 
     private bool wasVisible = false;
 
@@ -23,7 +25,15 @@ public class DoodadMovement : MonoBehaviour
             PlayerPrefs.SetInt(Type.ToString(), newVal);
         }
         else if (!isVisible && wasVisible)
-            Destroy(gameObject);
+        {
+            if (Cache == null)
+                Destroy(gameObject);
+            else
+            {
+                Cache.Enqueue(gameObject);
+                wasVisible = false;
+            }
+        }
 	}
 }
 

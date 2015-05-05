@@ -28,16 +28,15 @@ public class DrTScript : MonoBehaviour
         {
             if (!shouldFire)
             {
-                Debug.Log("DrT started firing");
                 shouldFire = true;
                 Invoke("TryFire", Random.Range(0, .5f));
             }
         }
         else if (shouldFire)
         {
-            Debug.Log("DrT stopped firing");
             CancelInvoke("TryFire");
 			shouldFire = false;
+            Destroy(gameObject);
         }
     }
 
