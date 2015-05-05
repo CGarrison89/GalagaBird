@@ -16,7 +16,7 @@ public class DoodadMovement : MonoBehaviour
     {
         transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
 
-        bool isVisible = transform.position.x < 4 && transform.position.x > -4;
+        bool isVisible = transform.position.x < 6 && transform.position.x > -6;
 
         if (isVisible && !wasVisible)
         {

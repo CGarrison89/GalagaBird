@@ -11,7 +11,6 @@ public class BirdMovement : MonoBehaviour {
 
     public AudioClip[] PokeballClips;
     public AudioClip Flap;
-    public AudioClip Die;
 
     private AudioSource pokeballAudio;
     private AudioSource jumpAudio;
