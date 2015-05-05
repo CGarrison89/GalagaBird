@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DrTScript : MonoBehaviour 
 {
@@ -9,11 +10,13 @@ public class DrTScript : MonoBehaviour
     public Sprite AttackSprite;
     public GameObject FireballPrefab;
 
-    private bool shouldFire;
+    private bool wasVisible;
     private float clipLength;
     private float timeOffset;
 
     private System.Random rand = new System.Random();
+
+    public Queue<GameObject> Cache;
 
     public void Start()
     {
@@ -23,20 +26,17 @@ public class DrTScript : MonoBehaviour
 
     public void Update()
     {
-        transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, Mathf.Sin(Time.time - timeOffset), transform.position.z);
-        if (GetComponent<Renderer>().IsVisibleFrom(Camera.main))
+        transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time - timeOffset), transform.position.z);
+        bool visible = transform.position.x < 4 && transform.position.x > -4;
+        if (visible && !wasVisible)
         {
-            if (!shouldFire)
-            {
-                shouldFire = true;
-                Invoke("TryFire", Random.Range(0, .5f));
-            }
+            wasVisible = true;
+            Invoke("TryFire", Random.Range(0, .5f));
         }
-        else if (shouldFire)
+        else if (!visible && wasVisible)
         {
             CancelInvoke("TryFire");
-			shouldFire = false;
-            Destroy(gameObject);
+			wasVisible = false;
         }
     }
 

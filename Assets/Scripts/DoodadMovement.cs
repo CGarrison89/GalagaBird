@@ -16,7 +16,7 @@ public class DoodadMovement : MonoBehaviour
     {
         transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
 
-        bool isVisible = GetComponent<Renderer>().IsVisibleFrom(Camera.main);
+        bool isVisible = transform.position.x < 4 && transform.position.x > -4;
 
         if (isVisible && !wasVisible)
         {
