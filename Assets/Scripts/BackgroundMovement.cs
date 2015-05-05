@@ -18,7 +18,7 @@ public class BackgroundMovement : MonoBehaviour {
 		}
 		if (collider.gameObject.CompareTag ("DrT")) {
 			Vector3 currentPosition = collider.gameObject.transform.position;
-			currentPosition = new Vector3(currentPosition.x + 23.97f, 0, -2);
+			currentPosition = new Vector3(currentPosition.x + Random.Range(10f, 30f), 0, -2);
 			collider.gameObject.transform.position = currentPosition;
 			Debug.Log ("Dr. T has been moved");
 		}
