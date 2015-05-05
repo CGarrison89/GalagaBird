@@ -9,7 +9,7 @@ public class BirdMovement : MonoBehaviour {
 
     public GameObject Loveball;
 
-    private bool wasPressed = false;
+    private KeyCode wasPressed = KeyCode.None;
 
 	// Use this for initialization
 	void Start () {
@@ -33,12 +33,22 @@ public class BirdMovement : MonoBehaviour {
 			transform.position += velocityForce * Time.deltaTime;
 		}
 
-        if (Input.GetKeyDown(KeyCode.Space) && !wasPressed)
-            wasPressed = true;
-        else if (Input.GetKeyUp(KeyCode.Space) && wasPressed)
+        if (Input.GetKeyDown(KeyCode.Space) && wasPressed == KeyCode.None)
+            wasPressed = KeyCode.Space;
+        else if (Input.GetKeyUp(KeyCode.Space) && wasPressed == KeyCode.Space)
         {
             Instantiate(Loveball, transform.position, Quaternion.identity);
-            wasPressed = false;
+            wasPressed = KeyCode.None;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && wasPressed == KeyCode.None)
+            wasPressed = KeyCode.Escape;
+        else if (Input.GetKeyUp(KeyCode.Escape) && wasPressed == KeyCode.Escape)
+        {
+            wasPressed = KeyCode.None;
+            Time.timeScale = 1;
+            GameState.Dead = true;
+            Application.LoadLevel("MainMenu");
         }
 
 	}
