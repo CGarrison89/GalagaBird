@@ -9,6 +9,9 @@ public class BoundCollision : MonoBehaviour {
 			GameState.Dead = true;
 			Time.timeScale = 0;
 			Application.LoadLevel("scene_0");
+
+			//Reset score
+			ScoreKeeper.Score = 0;
 		}
 	}
 }
