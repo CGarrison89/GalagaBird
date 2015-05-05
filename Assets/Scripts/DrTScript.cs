@@ -11,17 +11,19 @@ public class DrTScript : MonoBehaviour
 
     private bool shouldFire;
     private float clipLength;
+    private float timeOffset;
 
     private System.Random rand = new System.Random();
 
     public void Start()
     {
         clipLength = GetComponent<AudioSource>().clip.length;
+        timeOffset = Time.time;
     }
 
     public void Update()
     {
-        transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, Mathf.Sin(Time.time), transform.position.z);
+        transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, Mathf.Sin(Time.time - timeOffset), transform.position.z);
         if (GetComponent<Renderer>().IsVisibleFrom(Camera.main))
         {
             if (!shouldFire)
