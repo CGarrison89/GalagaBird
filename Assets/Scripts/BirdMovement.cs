@@ -6,11 +6,10 @@ public class BirdMovement : MonoBehaviour {
 	public Vector3 Gravity;
 	public Vector3 UpwardsForce;
 	Vector3 velocityForce = Vector3.zero;
-	Vector3 progressionForce = new Vector3(1, 0, 0);
 
     public GameObject Loveball;
 
-    private bool wasPressed = false;
+    private KeyCode wasPressed = KeyCode.None;
 
 	// Use this for initialization
 	void Start () {
@@ -34,12 +33,22 @@ public class BirdMovement : MonoBehaviour {
 			transform.position += velocityForce * Time.deltaTime;
 		}
 
-        if (Input.GetKeyDown(KeyCode.Space) && !wasPressed)
-            wasPressed = true;
-        else if (Input.GetKeyUp(KeyCode.Space) && wasPressed)
+        if (Input.GetKeyDown(KeyCode.Space) && wasPressed == KeyCode.None)
+            wasPressed = KeyCode.Space;
+        else if (Input.GetKeyUp(KeyCode.Space) && wasPressed == KeyCode.Space)
         {
             Instantiate(Loveball, transform.position, Quaternion.identity);
-            wasPressed = false;
+            wasPressed = KeyCode.None;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && wasPressed == KeyCode.None)
+            wasPressed = KeyCode.Escape;
+        else if (Input.GetKeyUp(KeyCode.Escape) && wasPressed == KeyCode.Escape)
+        {
+            wasPressed = KeyCode.None;
+            Time.timeScale = 1;
+            GameState.Dead = true;
+            Application.LoadLevel("MainMenu");
         }
 
 	}
@@ -48,7 +57,6 @@ public class BirdMovement : MonoBehaviour {
 		//Handle gravity positioning
 		velocityForce += Gravity * Time.deltaTime;
 		transform.position += velocityForce * Time.deltaTime;
-		transform.position += progressionForce * Time.deltaTime;
 	}
 
 
