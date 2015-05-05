@@ -8,9 +8,11 @@ public class ScoreKeeper : MonoBehaviour {
 
 	public static int Score = 0;
 	public static int HighScore = 0;
+	public static int Deaths = 0;
 
 	void Start() {
 		HighScore = PlayerPrefs.GetInt("highscore");
+		Deaths = PlayerPrefs.GetInt ("deaths");
 		scoreText = GameObject.FindGameObjectWithTag ("Score");
 		Text t = scoreText.GetComponent<Text> ();
 		t.text = "Score: " + Score.ToString () + "\nHigh Score: " + HighScore;
@@ -27,5 +29,9 @@ public class ScoreKeeper : MonoBehaviour {
 		}
 
 		t.text = "Score: " + Score.ToString () + "\nHigh Score: " + HighScore;
+	}
+
+	public static void AddDeath() {
+		++Deaths;
 	}
 }

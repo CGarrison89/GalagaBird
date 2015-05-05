@@ -12,6 +12,9 @@ public class BoundCollision : MonoBehaviour {
 
 			//Reset score
 			ScoreKeeper.Score = 0;
+
+			ScoreKeeper.AddDeath();
+			PlayerPrefs.SetInt("deaths", ScoreKeeper.Deaths);
 		}
 	}
 }

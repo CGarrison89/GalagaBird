@@ -18,18 +18,20 @@ using UnityEngine.UI;
                 "{1} Double Pipes\n" +
                 "{2} Ceiling Pipes\n" +
                 "{3} Floor Pipes\n" +
-                "{4} Enemies\n\n" +
+                "{4} Enemies\n" +
+				"{5} Deaths\n\n" +
                 "Flappy Bird has seen:\n" +
-                "{5} Hills\n" +
-                "{6} Big Hills\n" +
-                "{7} Mountains\n" +
-                "{8} Bushes\n" +
-                "{9} Clouds\n",
+                "{6} Hills\n" +
+                "{7} Big Hills\n" +
+                "{8} Mountains\n" +
+                "{9} Bushes\n" +
+                "{10} Clouds\n",
                 PlayerPrefs.GetInt("highscore"),
                 PlayerPrefs.GetInt("doublepipecount"),
                 PlayerPrefs.GetInt("toppipecount"),
                 PlayerPrefs.GetInt("bottompipecount"),
                 PlayerPrefs.GetInt("drtcount"),
+				PlayerPrefs.GetInt("deaths"),
                 PlayerPrefs.GetInt("hillcount"),
                 PlayerPrefs.GetInt("bighillcount"),
                 PlayerPrefs.GetInt("mountaincount"),
