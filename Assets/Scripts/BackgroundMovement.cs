@@ -12,7 +12,7 @@ public class BackgroundMovement : MonoBehaviour {
 		}
 		if (collider.gameObject.CompareTag("Pipes")) {
 			Vector3 currentPosition = collider.gameObject.transform.position;
-			currentPosition = new Vector3(currentPosition.x + 7f, Random.Range(0f, 1f), -2);
+			currentPosition = new Vector3(currentPosition.x + 7f, Random.Range(.25f, .75f), -2);
 			collider.gameObject.transform.position = currentPosition;
 			Debug.Log ("Moved pipes");
 		}
