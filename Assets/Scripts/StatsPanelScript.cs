@@ -13,13 +13,13 @@ using UnityEngine.UI;
             Text = GetComponent<Text>();
 
             Text.text = String.Format(
-                "High Score: {0}\n\n" + 
+                "High Score: {0}\n" +
+                "{5} Deaths\n\n" +
                 "Flappy Bird has bypassed:\n" +
                 "{1} Double Pipes\n" +
                 "{2} Ceiling Pipes\n" +
                 "{3} Floor Pipes\n" +
-                "{4} Enemies\n" +
-				"{5} Deaths\n\n" +
+                "{4} Enemies\n\n" +
                 "Flappy Bird has seen:\n" +
                 "{6} Hills\n" +
                 "{7} Big Hills\n" +

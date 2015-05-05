@@ -5,6 +5,7 @@ public class ScoreCollision : MonoBehaviour
 {
     private GameObject Player;
     private bool hasScored = false;
+    private bool wasVisible = false;
 
     public StatType Type;
     public int Value;
@@ -16,15 +17,20 @@ public class ScoreCollision : MonoBehaviour
 
 	void Update()
     {
-        float distance =  transform.position.x - Player.transform.position.x;
-        if (distance < 0 && !hasScored)
+        bool isVisible = transform.position.x < 4 && transform.position.x > -4;
+        if (isVisible && transform.position.x < 0 && !hasScored)
         {
-            Debug.Log("Score increase");
             ScoreKeeper.AddScore(1);
             hasScored = true;
 
             int newVal = PlayerPrefs.GetInt(Type.ToString(), 0) + Value;
             PlayerPrefs.SetInt(Type.ToString(), newVal);
         }
+
+
+        if (!isVisible && wasVisible)
+            hasScored = false;
+
+        wasVisible = isVisible;
 	}
 }
