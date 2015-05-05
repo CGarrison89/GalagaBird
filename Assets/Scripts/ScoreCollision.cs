@@ -3,17 +3,11 @@ using System.Collections;
 
 public class ScoreCollision : MonoBehaviour 
 {
-    private GameObject Player;
     private bool hasScored = false;
     private bool wasVisible = false;
 
     public StatType Type;
     public int Value;
-
-    void Start()
-    {
-        Player = GameObject.FindGameObjectWithTag("Player");
-    }
 
 	void Update()
     {

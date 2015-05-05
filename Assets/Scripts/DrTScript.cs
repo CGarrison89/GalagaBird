@@ -14,8 +14,6 @@ public class DrTScript : MonoBehaviour
     private float clipLength;
     private float timeOffset;
 
-    private System.Random rand = new System.Random();
-
     public Queue<GameObject> Cache;
 
     public void Start()
@@ -27,11 +25,14 @@ public class DrTScript : MonoBehaviour
     public void Update()
     {
         transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time - timeOffset), transform.position.z);
-        bool visible = transform.position.x < 4 && transform.position.x > -4;
+        bool visible = transform.position.x < 6 && transform.position.x > -6;
         if (visible && !wasVisible)
         {
             wasVisible = true;
             Invoke("TryFire", Random.Range(0, .5f));
+			int enemiesSeen = PlayerPrefs.GetInt("drtcount", 0);
+			++enemiesSeen;
+			PlayerPrefs.SetInt("drtcount", enemiesSeen);
         }
         else if (!visible && wasVisible)
         {
