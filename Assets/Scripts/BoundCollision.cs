@@ -15,6 +15,8 @@ public class BoundCollision : MonoBehaviour {
 
 			ScoreKeeper.AddDeath();
 			PlayerPrefs.SetInt("deaths", ScoreKeeper.Deaths);
+
+			GetComponent<AudioSource>().Play();
 		}
 	}
 }
