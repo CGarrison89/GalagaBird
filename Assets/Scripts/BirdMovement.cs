@@ -6,7 +6,6 @@ public class BirdMovement : MonoBehaviour {
 	public Vector3 Gravity;
 	public Vector3 UpwardsForce;
 	Vector3 velocityForce = Vector3.zero;
-	Vector3 progressionForce = new Vector3(1, 0, 0);
 
     public GameObject Loveball;
 
@@ -48,7 +47,6 @@ public class BirdMovement : MonoBehaviour {
 		//Handle gravity positioning
 		velocityForce += Gravity * Time.deltaTime;
 		transform.position += velocityForce * Time.deltaTime;
-		transform.position += progressionForce * Time.deltaTime;
 	}
 
 
