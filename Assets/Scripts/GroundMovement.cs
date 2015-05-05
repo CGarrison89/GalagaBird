@@ -17,7 +17,7 @@ public class GroundMovement : MonoBehaviour
             wasVisible = true;
         else if (!isVisible && wasVisible)
         {
-            transform.position = new Vector3(transform.position.x + 16, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x + 24, transform.position.y, transform.position.z);
             wasVisible = false;
         }
 	}

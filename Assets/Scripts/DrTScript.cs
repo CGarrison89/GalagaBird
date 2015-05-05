@@ -25,7 +25,7 @@ public class DrTScript : MonoBehaviour
     public void Update()
     {
         transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time - timeOffset), transform.position.z);
-        bool visible = transform.position.x < 6 && transform.position.x > -6;
+        bool visible = transform.position.x < 4 && transform.position.x > -6;
         if (visible && !wasVisible)
         {
             wasVisible = true;
