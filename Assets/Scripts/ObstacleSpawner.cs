@@ -28,38 +28,56 @@ public class ObstacleSpawner : MonoBehaviour
 
     private System.Random rand = new System.Random();
 
-    void Start()
+    void Awake()
     {
         totalWeight = DrTWeight + DoublePipeWeight + CeilingPipeWeight + FloorPipeWeight;
+
+        float curX = 4;
+        do
+        {
+            curX += (float)rand.NextTriangular(frequencyMin, frequencyMax, frequencyMean);
+            SpawnObstacle(curX, false);
+        }
+        while (curX < 8 - frequencyMin);
+    }
+
+    void Start()
+    {
         Invoke("SpawnObstacle", (float)rand.NextTriangular(frequencyMin, frequencyMax, frequencyMean));
     }
 
     void SpawnObstacle()
+    {
+        SpawnObstacle(8, true);
+    }
+
+    void SpawnObstacle(float xPos, bool doRepeat)
     {
         int chance = Random.Range(0, totalWeight);
 
         if ( 0 <= chance && chance < DrTWeight)
         {
             //spawn dr T
-            CreateSpawn(DrTPrefab, DrTCache, new Vector3(8, 0, 0));
+            CreateSpawn(DrTPrefab, DrTCache, new Vector3(xPos, 0, 0));
         }
         else if (DrTWeight <= chance && chance < DoublePipeWeight + DrTWeight)
         {
             //spawn double pipe
-            CreateSpawn(DoublePipePrefab, DoublePipeCache, new Vector3(8, Random.Range(-.25f, 1.3f), 0));
+            CreateSpawn(DoublePipePrefab, DoublePipeCache, new Vector3(xPos, Random.Range(-.25f, 1.3f), 0));
         }
         else if (DoublePipeWeight + DrTWeight <= chance && chance < CeilingPipeWeight + DoublePipeWeight + DrTWeight)
         {
             //spawn ceiling pipe
-            CreateSpawn(CeilingPipePrefab, CeilingPipeCache, new Vector3(8, Random.Range(2, 3.25f), 0));
+            CreateSpawn(CeilingPipePrefab, CeilingPipeCache, new Vector3(xPos, Random.Range(2, 3.25f), 0));
         }
         else if (CeilingPipeWeight + DoublePipeWeight + DrTWeight <= chance && chance < FloorPipeWeight + CeilingPipeWeight + DoublePipeWeight + DrTWeight)
         {
             //spawn floor pipe
-            CreateSpawn(FloorPipePrefab, FloorPipeCache, new Vector3(8, Random.Range(-2.25f, -1), 0));
+            CreateSpawn(FloorPipePrefab, FloorPipeCache, new Vector3(xPos, Random.Range(-2.25f, -1), 0));
         }
 
-        Invoke("SpawnObstacle", (float)rand.NextTriangular(frequencyMin, frequencyMax, frequencyMean));
+        if (doRepeat)
+            Invoke("SpawnObstacle", (float)rand.NextTriangular(frequencyMin, frequencyMax, frequencyMean));
     }
 
     void CreateSpawn(GameObject prefab, Queue<GameObject> cache, Vector3 position)
