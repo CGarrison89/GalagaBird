@@ -43,6 +43,9 @@ public class DrTScript : MonoBehaviour
 
     public void TryFire()
     {
+        if (GameState.State == GameStates.Dying || GameState.State == GameStates.GameWaiting)
+            return;
+
         GetComponent<SpriteRenderer>().sprite = AttackSprite;
         Instantiate(FireballPrefab, transform.position, Quaternion.identity);
         Invoke("DoneFiring", 0.1f);

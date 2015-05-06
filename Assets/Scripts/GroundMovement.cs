@@ -9,6 +9,9 @@ public class GroundMovement : MonoBehaviour
 
 	void Update () 
     {
+        if (GameState.State != GameStates.Playing)
+            return;
+
         transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
 
         bool isVisible = GetComponent<Renderer>().IsVisibleFrom(Camera.main);

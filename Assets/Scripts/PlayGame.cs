@@ -5,7 +5,7 @@ public class PlayGame : MonoBehaviour
 {	
 	public void LoadScene () 
     {
-        Time.timeScale = 0;
 		Application.LoadLevel("scene_0");
+        GameState.State = GameStates.GameWaiting;
 	}
 }

@@ -51,6 +51,66 @@ public class BackgroundSpawner : MonoBehaviour
     public Queue<GameObject> Bush_Cache = new Queue<GameObject>();
     public Queue<GameObject> Cloud_Cache = new Queue<GameObject>();
 
+    void Awake()
+    {
+        float curX = -6;
+
+        if (Hill1 != null)
+        {
+            do
+            {
+                curX += (float)rand.NextTriangular(Hill1_Frequency_Min, Hill1_Frequency_Max, Hill1_Frequency_Min + Hill1_Frequency_Max / 2);
+                Spawn(Hill1, Hill1_Cache, curX, Hill1_Height_Min, Hill1_Height_Max, Hill1_Depth_Min, Hill1_Depth_Max);
+            }
+            while (curX < 9 - Hill1_Frequency_Min);
+            curX = -6;
+        }
+
+        if (Hill2 != null)
+        {
+            do
+            {
+                curX += (float)rand.NextTriangular(Hill2_Frequency_Min, Hill2_Frequency_Max, Hill2_Frequency_Min + Hill2_Frequency_Max / 2);
+                Spawn(Hill2, Hill2_Cache, curX, Hill2_Height_Min, Hill2_Height_Max, Hill2_Depth_Min, Hill2_Depth_Max);
+            }
+            while (curX < 9 - Hill2_Frequency_Min);
+            curX = -6;
+        }
+
+        if (Hill3 != null)
+        {
+            do
+            {
+                curX += (float)rand.NextTriangular(Hill3_Frequency_Min, Hill3_Frequency_Max, Hill3_Frequency_Min + Hill3_Frequency_Max / 2);
+                Spawn(Hill3, Hill3_Cache, curX, Hill3_Height_Min, Hill3_Height_Max, Hill3_Depth_Min, Hill3_Depth_Max);
+            }
+            while (curX < 9 - Hill3_Frequency_Min);
+            curX = -6;
+        }
+
+        if (Bush != null)
+        {
+            do
+            {
+                curX += (float)rand.NextTriangular(Bush_Frequency_Min, Bush_Frequency_Max, Bush_Frequency_Min + Bush_Frequency_Max / 2);
+                Spawn(Bush, Bush_Cache, curX, Bush_Height, Bush_Depth_Min, Bush_Depth_Max);
+            }
+            while (curX < 9 - Bush_Frequency_Min);
+            curX = -6;
+        }
+
+        if (Cloud != null)
+        {
+            do
+            {
+                curX += (float)rand.NextTriangular(Cloud_Frequency_Min, Cloud_Frequency_Max, Cloud_Frequency_Min + Cloud_Frequency_Max / 2);
+                Spawn(Cloud, Cloud_Cache, curX, Cloud_Height_Min, Cloud_Height_Max, Cloud_Depth_Min, Cloud_Depth_Max);
+            }
+            while (curX < 9 - Cloud_Frequency_Min);
+            curX = -6;
+        }
+    }
+
 	void Start()
     {
         Invoke("SpawnHill1", Random.Range(Hill1_Frequency_Min, Hill1_Frequency_Max));
@@ -60,19 +120,22 @@ public class BackgroundSpawner : MonoBehaviour
         Invoke("SpawnCloud", Random.Range(Cloud_Frequency_Min, Cloud_Frequency_Max));
 	}
 
-    void Spawn(GameObject prefab, Queue<GameObject> Cache, float Height_Min, float Height_Max, int Depth_Min, int Depth_Max)
+    void Spawn(GameObject prefab, Queue<GameObject> Cache, float xPos, float Height_Min, float Height_Max, int Depth_Min, int Depth_Max)
     {
-        Spawn(prefab, Cache, (float)rand.NextTriangular(Height_Min, Height_Max, (Height_Min + Height_Max) * .5), Depth_Min, Depth_Max);
+        float height = (float)rand.NextTriangular(Height_Min, Height_Max, (Height_Min + Height_Max) * .5);
+        int depth = (int)rand.NextTriangular(Depth_Min, Depth_Max, (Depth_Min + Depth_Max) * .5);
+        Spawn(prefab, Cache, xPos, height, depth);
     }
 
-    void Spawn(GameObject prefab, Queue<GameObject> Cache, float Height, int Depth_Min, int Depth_Max)
+    void Spawn(GameObject prefab, Queue<GameObject> Cache, float xPos, float Height, int Depth_Min, int Depth_Max)
     {
-        Spawn(prefab, Cache, Height, (int)rand.NextTriangular(Depth_Min, Depth_Max, (Depth_Min + Depth_Max) * .5));
+        int depth = (int)rand.NextTriangular(Depth_Min, Depth_Max, (Depth_Min + Depth_Max) * .5);
+        Spawn(prefab, Cache, xPos, Height, depth);
     }
 
-    void Spawn(GameObject prefab, Queue<GameObject> Cache, float Height, int Depth)
+    void Spawn(GameObject prefab, Queue<GameObject> Cache, float xPos, float Height, int Depth)
     {
-        Vector3 position = new Vector3(9, Height, 0);
+        Vector3 position = new Vector3(xPos, Height, 0);
         GameObject spawn;
 
         if (Cache.Count <= 0)
@@ -96,7 +159,7 @@ public class BackgroundSpawner : MonoBehaviour
     {
         if (Hill1 != null)
         {
-            Spawn(Hill1, Hill1_Cache, Hill1_Height_Min, Hill1_Height_Max, Hill1_Depth_Min, Hill1_Depth_Max);
+            Spawn(Hill1, Hill1_Cache, 9, Hill1_Height_Min, Hill1_Height_Max, Hill1_Depth_Min, Hill1_Depth_Max);
             Invoke("SpawnHill1", Random.Range(Hill1_Frequency_Min, Hill1_Frequency_Max));
         }
     }
@@ -104,7 +167,7 @@ public class BackgroundSpawner : MonoBehaviour
     {
         if (Hill2 != null)
         {
-            Spawn(Hill2, Hill2_Cache, Hill2_Height_Min, Hill2_Height_Max, Hill2_Depth_Min, Hill2_Depth_Max);
+            Spawn(Hill2, Hill2_Cache, 9, Hill2_Height_Min, Hill2_Height_Max, Hill2_Depth_Min, Hill2_Depth_Max);
             Invoke("SpawnHill2", Random.Range(Hill2_Frequency_Min, Hill2_Frequency_Max));
         }
     }
@@ -112,7 +175,7 @@ public class BackgroundSpawner : MonoBehaviour
     {
         if (Hill3 != null)
         {
-            Spawn(Hill3, Hill3_Cache, Hill3_Height_Min, Hill3_Height_Max, Hill3_Depth_Min, Hill3_Depth_Max);
+            Spawn(Hill3, Hill3_Cache, 9, Hill3_Height_Min, Hill3_Height_Max, Hill3_Depth_Min, Hill3_Depth_Max);
             Invoke("SpawnHill3", Random.Range(Hill3_Frequency_Min, Hill3_Frequency_Max));
         }
     }
@@ -120,7 +183,7 @@ public class BackgroundSpawner : MonoBehaviour
     {
         if (Bush != null)
         {
-            Spawn(Bush, Bush_Cache, Bush_Height, Bush_Depth_Min, Bush_Depth_Max);
+            Spawn(Bush, Bush_Cache, 9, Bush_Height, Bush_Depth_Min, Bush_Depth_Max);
             Invoke("SpawnBush", Random.Range(Bush_Frequency_Min, Bush_Frequency_Max));
         }
     }
@@ -128,7 +191,7 @@ public class BackgroundSpawner : MonoBehaviour
     {
         if (Cloud != null)
         {
-            Spawn(Cloud, Cloud_Cache, Cloud_Height_Min, Cloud_Height_Max, Cloud_Depth_Min, Cloud_Depth_Max);
+            Spawn(Cloud, Cloud_Cache, 9, Cloud_Height_Min, Cloud_Height_Max, Cloud_Depth_Min, Cloud_Depth_Max);
             Invoke("SpawnCloud", Random.Range(Cloud_Frequency_Min, Cloud_Frequency_Max));
         }
     }
