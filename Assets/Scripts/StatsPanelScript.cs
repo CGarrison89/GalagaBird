@@ -11,6 +11,8 @@ using UnityEngine.UI;
         public void Awake()
         {
             GameState.State = GameStates.MainMenu;
+            Time.timeScale = 1;
+
             Text = GetComponent<Text>();
 
             Text.text = String.Format(

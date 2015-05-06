@@ -54,44 +54,61 @@ public class BackgroundSpawner : MonoBehaviour
     void Awake()
     {
         float curX = -6;
-        do
-        {
-            curX += (float)rand.NextTriangular(Hill1_Frequency_Min, Hill1_Frequency_Max, Hill1_Frequency_Min + Hill1_Frequency_Max / 2);
-            Spawn(Hill1, Hill1_Cache, curX, Hill1_Height_Min, Hill1_Height_Max, Hill1_Depth_Min, Hill1_Depth_Max);
-        }
-        while (curX < 9 - Hill1_Frequency_Min);
 
-        curX = -6;
-        do
+        if (Hill1 != null)
         {
-            curX += (float)rand.NextTriangular(Hill2_Frequency_Min, Hill2_Frequency_Max, Hill2_Frequency_Min + Hill2_Frequency_Max / 2);
-            Spawn(Hill2, Hill2_Cache, curX, Hill2_Height_Min, Hill2_Height_Max, Hill2_Depth_Min, Hill2_Depth_Max);
+            do
+            {
+                curX += (float)rand.NextTriangular(Hill1_Frequency_Min, Hill1_Frequency_Max, Hill1_Frequency_Min + Hill1_Frequency_Max / 2);
+                Spawn(Hill1, Hill1_Cache, curX, Hill1_Height_Min, Hill1_Height_Max, Hill1_Depth_Min, Hill1_Depth_Max);
+            }
+            while (curX < 9 - Hill1_Frequency_Min);
+            curX = -6;
         }
-        while (curX < 9 - Hill2_Frequency_Min);
 
-        curX = -6;
-        do
+        if (Hill2 != null)
         {
-            curX += (float)rand.NextTriangular(Hill3_Frequency_Min, Hill3_Frequency_Max, Hill3_Frequency_Min + Hill3_Frequency_Max / 2);
-            Spawn(Hill3, Hill3_Cache, curX, Hill3_Height_Min, Hill3_Height_Max, Hill3_Depth_Min, Hill3_Depth_Max);
+            do
+            {
+                curX += (float)rand.NextTriangular(Hill2_Frequency_Min, Hill2_Frequency_Max, Hill2_Frequency_Min + Hill2_Frequency_Max / 2);
+                Spawn(Hill2, Hill2_Cache, curX, Hill2_Height_Min, Hill2_Height_Max, Hill2_Depth_Min, Hill2_Depth_Max);
+            }
+            while (curX < 9 - Hill2_Frequency_Min);
+            curX = -6;
         }
-        while (curX < 9 - Hill3_Frequency_Min);
 
-        curX = -6;
-        do
+        if (Hill3 != null)
         {
-            curX += (float)rand.NextTriangular(Bush_Frequency_Min, Bush_Frequency_Max, Bush_Frequency_Min + Bush_Frequency_Max / 2);
-            Spawn(Bush, Bush_Cache, curX, Bush_Height, Bush_Depth_Min, Bush_Depth_Max);
+            do
+            {
+                curX += (float)rand.NextTriangular(Hill3_Frequency_Min, Hill3_Frequency_Max, Hill3_Frequency_Min + Hill3_Frequency_Max / 2);
+                Spawn(Hill3, Hill3_Cache, curX, Hill3_Height_Min, Hill3_Height_Max, Hill3_Depth_Min, Hill3_Depth_Max);
+            }
+            while (curX < 9 - Hill3_Frequency_Min);
+            curX = -6;
         }
-        while (curX < 9 - Bush_Frequency_Min);
 
-        curX = -6;
-        do
+        if (Bush != null)
         {
-            curX += (float)rand.NextTriangular(Cloud_Frequency_Min, Cloud_Frequency_Max, Cloud_Frequency_Min + Cloud_Frequency_Max / 2);
-            Spawn(Cloud, Cloud_Cache, curX, Cloud_Height_Min, Cloud_Height_Max, Cloud_Depth_Min, Cloud_Depth_Max);
+            do
+            {
+                curX += (float)rand.NextTriangular(Bush_Frequency_Min, Bush_Frequency_Max, Bush_Frequency_Min + Bush_Frequency_Max / 2);
+                Spawn(Bush, Bush_Cache, curX, Bush_Height, Bush_Depth_Min, Bush_Depth_Max);
+            }
+            while (curX < 9 - Bush_Frequency_Min);
+            curX = -6;
         }
-        while (curX < 9 - Cloud_Frequency_Min);
+
+        if (Cloud != null)
+        {
+            do
+            {
+                curX += (float)rand.NextTriangular(Cloud_Frequency_Min, Cloud_Frequency_Max, Cloud_Frequency_Min + Cloud_Frequency_Max / 2);
+                Spawn(Cloud, Cloud_Cache, curX, Cloud_Height_Min, Cloud_Height_Max, Cloud_Depth_Min, Cloud_Depth_Max);
+            }
+            while (curX < 9 - Cloud_Frequency_Min);
+            curX = -6;
+        }
     }
 
 	void Start()

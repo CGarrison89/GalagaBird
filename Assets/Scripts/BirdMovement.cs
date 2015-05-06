@@ -48,7 +48,7 @@ public class BirdMovement : MonoBehaviour {
             }
 		}
 
-        if (Input.GetKeyDown(KeyCode.Space) && wasPressed == KeyCode.None)
+        if (GameState.State == GameStates.Playing && Input.GetKeyDown(KeyCode.Space) && wasPressed == KeyCode.None)
             wasPressed = KeyCode.Space;
         else if (Input.GetKeyUp(KeyCode.Space) && wasPressed == KeyCode.Space)
         {
