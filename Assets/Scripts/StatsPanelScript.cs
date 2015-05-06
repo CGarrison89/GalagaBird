@@ -8,11 +8,8 @@ using UnityEngine.UI;
     public class StatsPanelScript : MonoBehaviour
     {
         private Text Text;
-        public void Awake()
+        public void Start()
         {
-            GameState.State = GameStates.MainMenu;
-            Time.timeScale = 1;
-
             Text = GetComponent<Text>();
 
             Text.text = String.Format(

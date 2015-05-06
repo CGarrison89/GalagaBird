@@ -24,7 +24,7 @@ public class DrTScript : MonoBehaviour
 
     public void Update()
     {
-        transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time - timeOffset), transform.position.z);
+        transform.position = new Vector3(transform.position.x, Mathf.Sin((Time.time - timeOffset)), transform.position.z);
         bool visible = transform.position.x < 4 && transform.position.x > -6;
         if (visible && !wasVisible)
         {
@@ -49,7 +49,7 @@ public class DrTScript : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = AttackSprite;
         Instantiate(FireballPrefab, transform.position, Quaternion.identity);
         Invoke("DoneFiring", 0.1f);
-        GetComponent<AudioSource>().Play(); ;
+        GetComponent<AudioSource>().Play();
 
         Invoke("TryFire", Random.Range(clipLength, clipLength + 1));
     }

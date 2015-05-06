@@ -8,7 +8,7 @@ public class BoundCollision : MonoBehaviour {
         {
             if (GameState.State != GameStates.Dying)
             {
-                var bird = collider.gameObject.transform.parent.gameObject;
+                var bird = collider.gameObject;
                 bird.SendMessage("Die");
             }
 		}

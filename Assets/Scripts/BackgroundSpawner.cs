@@ -143,12 +143,10 @@ public class BackgroundSpawner : MonoBehaviour
             spawn = Instantiate(prefab, position, Quaternion.identity) as GameObject;
             spawn.GetComponent<DoodadMovement>().Cache = Cache;
             spawn.transform.parent = transform;
-            Debug.Log("Created new " + prefab.name);
         }
         else
         {
             spawn = Cache.Dequeue();
-            Debug.Log("Dequeued " + prefab.name);
         }
 
         spawn.transform.position = position;
