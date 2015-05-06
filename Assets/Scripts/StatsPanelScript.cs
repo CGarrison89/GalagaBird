@@ -10,6 +10,7 @@ using UnityEngine.UI;
         private Text Text;
         public void Awake()
         {
+            GameState.State = GameStates.MainMenu;
             Text = GetComponent<Text>();
 
             Text.text = String.Format(

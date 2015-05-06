@@ -3,5 +3,13 @@ using System.Collections;
 
 public class GameState : MonoBehaviour {
 
-	public static bool Dead = true;
+    public static GameStates State = GameStates.GameWaiting;
+}
+
+public enum GameStates
+{
+    MainMenu,
+    GameWaiting,
+    Dying,
+    Playing
 }

@@ -14,6 +14,9 @@ public class DoodadMovement : MonoBehaviour
 
 	void Update() 
     {
+        if (GameState.State != GameStates.Playing && GameState.State != GameStates.MainMenu)
+            return;
+
         transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
 
         bool isVisible = transform.position.x < 6 && transform.position.x > -6;
